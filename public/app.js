@@ -6,7 +6,6 @@ let capture;
 let ready = false;
 
 //STEP 1. p5 setup
-
 function setup(){
   createCanvas(windowWidth, windowHeight);
 
@@ -19,7 +18,6 @@ function setup(){
   capture.hide();
 
   noStroke();
-
 }
 
 function draw() {
@@ -58,22 +56,11 @@ function pushColor(){
   }
 }
 
-// function mouseMoved(){
-
-  // ellipse(mouseX, mouseY, 20, 20);
-  // socket.emit('data', {c: c, x: mouseX, y: mouseY});
-// }
-
-
 socket.on("connect", ()=> {
   console.log("socks are on", socket.id);
 });
 
 socket.on('color', (colors) => {
-  // debugger;
-  // fill(color.r, color.g, color.b);
-  // rect(100, 100, 100, 100); //for testing
-  //console.log(colors.length);
   let h = height/colors.length + 1;
   for(let i = 0; i < colors.length; i++){
     let y = i * h;

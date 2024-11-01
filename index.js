@@ -22,7 +22,7 @@ server.listen(port, () => {
 
 
 
-let colors = [];
+let colors = []; //hold all the client data
 
 //routes
 io.on('connection', (socket) => {
@@ -44,8 +44,6 @@ io.on('connection', (socket) => {
   console.log(socket.id);
 
   socket.on('color', (color) => {
-    // console.log(socket.id, color);
-
     //using the socket id, find the index of the id key in the array
     //if the id already exists in the array, update it, else make a new array item
     let indexOfSocket = colors.findIndex(item => item.id === socket.id);
@@ -56,20 +54,9 @@ io.on('connection', (socket) => {
       colors[indexOfSocket].color = color; //update existing color
     }
 
-    // console.log(colors);
-
     //send to all clients, including us
     io.emit('color', colors); //send the array of colors
-
-    //send to all clients, except us
-    //socket.broadcast.emit('data', data);
-
-    //send only to ourselves
-    //socket.emit('data', data);
-
   });
-
-
 });
 
 
